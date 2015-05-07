@@ -1,9 +1,10 @@
 class Board
 
-  attr_accessor :positions
+  attr_accessor :positions, :game_over
 
   def initialize
     @positions = []
+    @game_over = false
   end
 
   def out_of_bounds?(square)
@@ -19,10 +20,19 @@ class Board
 
   def result(square)
     if positions.include?(square)
-       # positions.delete(square) #temporarily
-      "BOOM!"
+       positions.delete(square) # temporarily
+       puts "BOOM!"
+       game_over?
     else
-      "You missed"
+      puts "You missed"
+      false
+    end
+  end
+
+  def game_over?
+    if positions.empty?
+      @game_over = true
+      puts "Game over!"
     end
   end
 

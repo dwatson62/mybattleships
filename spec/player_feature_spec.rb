@@ -26,24 +26,36 @@ feature 'A player can fire' do
     player1 = Player.new
     internal_board = Board.new
     player1.fire("A3", internal_board)
-    expect(internal_board.result("A3")).to eq 'You missed'
+    expect(internal_board.result("A3")).to eq false
   end
 
-  scenario 'and hit a ship' do
+  xscenario 'and hit a ship' do
     player1 = Player.new
     internal_board = Board.new
     ship = Ship.new("A5")
     player1.place(ship, internal_board)
     player1.fire("A5", internal_board)
-    expect(internal_board.result("A5")).to eq 'BOOM!'
+    expect(internal_board.result("A5")).to eq true
   end
 
-    xscenario 'and hit a ship, and have it removed from the positions array' do
+    scenario 'and hit a ship, and have it removed from the positions array' do
     player1 = Player.new
     internal_board = Board.new
     ship = Ship.new("A5")
-    player1.place(ship,internal_board)
+    player1.place(ship, internal_board)
     player1.fire("A5", internal_board)
-    expect(internal_board.positions).to eq 'BOOM!'
+    expect(internal_board.positions).to eq []
+  end
+
+  scenario 'hit all ships and win the game' do
+    player1 = Player.new
+    internal_board = Board.new
+    ship1 = Ship.new("A4")
+    ship2 = Ship.new("A5")
+    player1.place(ship1, internal_board)
+    player1.place(ship2, internal_board)
+    player1.fire("A4", internal_board)
+    player1.fire("A5", internal_board)
+    expect(internal_board.game_over).to eq true
   end
 end
