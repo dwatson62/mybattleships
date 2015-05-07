@@ -20,6 +20,13 @@ feature 'Player can' do
     expect(internal_board.positions[1]).to eq "C2"
   end
 
+  scenario 'place a 2 square ship on the board vertically' do
+    destroyer = Destroyer.new("C1", "V")
+    player1.place(destroyer, internal_board)
+    expect(internal_board.positions[0]).to eq "C1"
+    expect(internal_board.positions[1]).to eq "D1"
+  end
+
   scenario 'see the game board' do
     ship = Ship.new("B1")
     expect(player1.grid).to eq player1.grid

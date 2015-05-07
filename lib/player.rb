@@ -19,8 +19,11 @@ class Player
     fail 'Out of bounds' if board.out_of_bounds?(ship.start_position)
     fail 'Cannot place on top of another ship' if board.overlapping?(ship)
     if ship.size > 1
-      board.positions << ship.start_position
-      horizontal_size(ship, board)
+      if ship.direction == "H"
+        horizontal_size(ship, board)
+      else
+        vertical_size(ship,board)
+      end
     else
       board.positions << ship.start_position
     end
@@ -58,7 +61,17 @@ class Player
 
   def horizontal_size(ship, board)
     row, col = convertor(ship.start_position)
+    board.positions << ship.start_position
     (ship.size - 1).times { board.positions << board.positions.last.next }
+  end
+
+  def vertical_size(ship, board)
+    x, y = (ship.start_position).split(//,2)
+    x = x.chars
+    (ship.size - 1).times { x << x.last.next }
+    x.map!{ |letter| letter + y }
+    board.positions << x
+    board.positions.flatten!
   end
 
 end

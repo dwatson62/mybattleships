@@ -18,6 +18,12 @@ describe Player do
     it 'a ship on square A3' do
       expect(subject.place(ship, board)).to eq ["A3"]
     end
+
+    it 'a 2 square ship vertically' do
+      destroyer = Destroyer.new("C1", "V")
+      subject.place(destroyer, board)
+      expect(board.positions).to eq ["C1", "D1"]
+    end
   end
 
   context 'Cannot place' do
