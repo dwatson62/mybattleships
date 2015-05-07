@@ -16,6 +16,7 @@ class Player
 
   def place(ship, board)
     fail 'Out of bounds' if board.out_of_bounds?(ship.start_position)
+    fail 'Cannot place on top of another ship' if board.overlapping?(ship)
     board.positions << ship.start_position
   end
 

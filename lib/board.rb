@@ -12,6 +12,10 @@ class Board
      fail 'Out of bounds' if x[1] > 9 || x[0] > 9 || x[0] < 0 || x[1] < 0
   end
 
+  def overlapping?(ship)
+    positions.include?(ship.start_position)
+  end
+
   def convertor(square)
     alphabet = ("a".."z").to_a
     row, col = square.downcase.split(//,2)
