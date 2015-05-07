@@ -19,10 +19,6 @@ class Player
     board.positions << ship.start_position
   end
 
-  def checksquare(square)
-    "ship"
-  end
-
   def convertor(square)
     alphabet = ("a".."z").to_a
     row, col = square.downcase.split(//,2)

@@ -20,7 +20,7 @@ class Board
 
   def result(square)
     if positions.include?(square)
-       positions.delete(square) # temporarily
+       positions.delete(square)
        puts "BOOM!"
        game_over?
     else
