@@ -1,5 +1,6 @@
 require_relative 'ship'
 require_relative 'board'
+require_relative 'destroyer'
 
 class Player
 
@@ -17,7 +18,12 @@ class Player
   def place(ship, board)
     fail 'Out of bounds' if board.out_of_bounds?(ship.start_position)
     fail 'Cannot place on top of another ship' if board.overlapping?(ship)
-    board.positions << ship.start_position
+    if ship.size > 1
+      board.positions << ship.start_position
+      horizontal_size(ship, board)
+    else
+      board.positions << ship.start_position
+    end
   end
 
   def convertor(square)
@@ -48,6 +54,11 @@ class Player
   def change_to_hit(square, player)
     row, col = convertor(square)
     player.grid[row][col] = "HIT"
+  end
+
+  def horizontal_size(ship, board)
+    row, col = convertor(ship.start_position)
+    (ship.size - 1).times { board.positions << board.positions.last.next }
   end
 
 end

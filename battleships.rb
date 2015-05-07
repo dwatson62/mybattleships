@@ -1,6 +1,7 @@
 require './lib/ship'
 require './lib/board'
 require './lib/player'
+require './lib/destroyer'
 
 player1 = Player.new
 opponent = Player.new
@@ -10,13 +11,22 @@ opponent_board = Board.new
 puts "Player 1, please enter secret ship coordinates..."
 coords1 = gets.chomp
 ship1 = Ship.new(coords1)
+puts "Player 1, please enter secret destroyer coordinates..."
+coords1 = gets.chomp
+destroyer1 = Destroyer.new(coords1)
 
 puts "Player 2, please enter secret ship coordinates..."
 coords2 = gets.chomp
 ship2 = Ship.new(coords2)
+puts "Player 2, please enter secret destroyer coordinates..."
+coords2 = gets.chomp
+destroyer2 = Destroyer.new(coords2)
 
 player1.place(ship1, board1)
+player1.place(destroyer1, board1)
+
 opponent.place(ship2, opponent_board)
+opponent.place(destroyer2, opponent_board)
 attack = ""
 
 until attack == "q"

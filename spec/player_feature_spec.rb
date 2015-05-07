@@ -7,10 +7,17 @@ feature 'Player can' do
   let(:player1) { Player.new }
   let(:internal_board) { Board.new }
 
-  scenario 'place a ship on the board' do
+  scenario 'place a 1 square ship on the board' do
     ship = Ship.new("B1")
     player1.place(ship, internal_board)
     expect(internal_board.positions[0]).to eq "B1"
+  end
+
+  scenario 'place a 2 square ship on the board horizontally' do
+    destroyer = Destroyer.new("C1")
+    player1.place(destroyer, internal_board)
+    expect(internal_board.positions[0]).to eq "C1"
+    expect(internal_board.positions[1]).to eq "C2"
   end
 
   scenario 'see the game board' do
