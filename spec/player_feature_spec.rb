@@ -10,6 +10,13 @@ feature 'Player can' do
     player1.place(ship, internal_board)
     expect(internal_board.positions[0]).to eq "B1"
   end
+
+  scenario 'see the game board' do
+    player1 = Player.new
+    internal_board = Board.new
+    ship = Ship.new("B1")
+    expect(player1.grid).to eq player1.grid
+  end
 end
 
 feature 'Cannot place a ship' do
