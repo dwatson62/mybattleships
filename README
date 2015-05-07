@@ -1,1 +1,13 @@
-Battleships 3rd attempt
+Battleships 3rd attempt -- Daryl Watson
+
+  Has a basic game engine
+
+  Ship, Player and Board Classes
+
+  Can place a 1 square ship
+
+  Can fire at ships
+
+  Attacks can hit or miss
+
+  Can see the grid of attacks
