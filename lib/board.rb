@@ -28,7 +28,7 @@ class Board
        puts "BOOM!"
        game_over?
     else
-      puts "You missed"
+      # puts "You missed"
       false
     end
   end

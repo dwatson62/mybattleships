@@ -36,12 +36,17 @@ class Player
   end
 
   def fire(square, board, player)
-    count = board.positions.length
-    board.result(square)
-    if board.positions.length < count
-      change_to_hit(square, player)
+
+    if square == "N"
+      go_nuclear(square, board, player)
     else
-      change_to_x(square, player)
+      count = board.positions.length
+      board.result(square)
+      if board.positions.length < count
+        change_to_hit(square, player)
+      else
+        change_to_x(square, player)
+      end
     end
   end
 
@@ -74,4 +79,17 @@ class Player
     board.positions.flatten!
   end
 
+  def go_nuclear(square, board, player)
+    square = player.grid.flatten
+      square.each do |x|
+        count = board.positions.length
+        board.result(x)
+        if board.positions.length < count
+          change_to_hit(x, player)
+        else
+          change_to_x(x, player)
+        end
+      end
+      board.game_over?
+    end
 end

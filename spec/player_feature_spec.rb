@@ -85,4 +85,11 @@ feature 'A player can fire' do
     player1.fire("A5", internal_board, player1)
     expect(internal_board.game_over).to eq true
   end
+
+  xscenario 'fire a nuke and win the game instantly' do
+    ship1 = Ship.new("A4")
+    player1.place(ship1, internal_board)
+    expect(internal_board.game_over).to eq true
+  end
+
 end
